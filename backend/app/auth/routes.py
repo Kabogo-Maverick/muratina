@@ -6,6 +6,9 @@ from app.database import SessionLocal
 from app.models import User
 from app.auth.utils import hash_password, verify_password, create_access_token
 
+from app.schemas import UserCreate, UserLogin
+
+
 # then we will create a router for authentication
 router = APIRouter(
     prefix="/auth",
@@ -23,30 +26,52 @@ def get_db():
     finally:
         db.close()
 
+
+
 # 1. Register route endpoint for user registration
 @router.post("/register")
-def register(email: str, password: str, db: Session = Depends(get_db)):
-    # Check if user exists
-    existing_user = db.query(User).filter(User.email == email).first()
+def register(user: UserCreate, db: Session = Depends(get_db)):
+    # check if user exists
+    existing_user = db.query(User).filter(User.email == user.email).first()
     if existing_user:
         raise HTTPException(status_code=400, detail="Email already registered")
     
-    # Hash password and create user
-    hashed_pwd = hash_password(password)
-    user = User(email=email, password=hashed_pwd, is_admin=False)
-    db.add(user)
+    # hash password
+    hashed_pwd = hash_password(user.password)
+
+    # create user
+    new_user = User(
+        email=user.email,
+        password=hashed_pwd,
+        is_admin=False
+    )
+
+    db.add(new_user)
     db.commit()
-    db.refresh(user)
-    return {"message": "User registered successfully", "user_id": user.id}
+    db.refresh(new_user)
+
+    return {
+        "message": "User registered successfully",
+        "user_id": new_user.id
+    }
+
+
+
 
 # 2. Login route endpoint for user authentication
 @router.post("/login")
+def login(user: UserLogin, db: Session = Depends(get_db)):
+    db_user = db.query(User).filter(User.email == user.email).first()
 
-def login(email: str, password: str, db: Session = Depends(get_db)):
-    user = db.query(User).filter(User.email == email).first()
-    if not user or not verify_password(password, user.password):
+    if not db_user or not verify_password(user.password, db_user.password):
         raise HTTPException(status_code=401, detail="Invalid credentials")
-    
-    # Generate token
-    token = create_access_token({"sub": user.email, "is_admin": user.is_admin}) 
-    return {"access_token": token, "token_type": "bearer"}
+
+    token = create_access_token({
+        "sub": db_user.email,
+        "is_admin": db_user.is_admin
+    })
+
+    return {
+        "access_token": token,
+        "token_type": "bearer"
+    }
