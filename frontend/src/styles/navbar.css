@@ -1,8 +1,13 @@
 .navbar {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 20px 60px;
   border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1000;
 }
 
 .logo {
@@ -17,9 +22,40 @@
 
 .links a {
   font-size: 14px;
-  color: #111;
+  transition: 0.3s;
 }
 
 .links a:hover {
-  text-decoration: underline;
+  opacity: 0.6;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    width: 200px;
+    padding: 20px;
+    border-left: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: none;
+  }
+
+  .links.active {
+    display: flex;
+  }
 }

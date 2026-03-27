@@ -1,8 +1,12 @@
 body {
   margin: 0;
   font-family: "Inter", sans-serif;
-  background: #ffffff;
+  background: #fff;
   color: #111;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 a {
