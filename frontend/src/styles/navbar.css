@@ -1,0 +1,25 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 60px;
+  border-bottom: 1px solid #eee;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.links {
+  display: flex;
+  gap: 30px;
+}
+
+.links a {
+  font-size: 14px;
+  color: #111;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
