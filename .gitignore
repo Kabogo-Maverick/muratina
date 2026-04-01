@@ -1,0 +1,10 @@
+# Python cache files
+__pycache__/
+*.pyc
+
+# Node modules
+node_modules/
+
+# Env files
+.env
+venv/
