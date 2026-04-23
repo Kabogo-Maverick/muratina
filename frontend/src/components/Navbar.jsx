@@ -8,10 +8,19 @@ function Navbar() {
 
   const navigate = useNavigate();
 
-  // 🔥 CHECK LOGIN STATE
+  // 🔥 CHECK LOGIN STATE (runs on load + when storage changes)
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
+    const checkAuth = () => {
+      const token = localStorage.getItem("token");
+      setIsLoggedIn(!!token);
+    };
+
+    checkAuth();
+
+    // update navbar instantly when login/logout happens in other components
+    window.addEventListener("storage", checkAuth);
+
+    return () => window.removeEventListener("storage", checkAuth);
   }, []);
 
   const handleLogout = () => {
@@ -23,13 +32,17 @@ function Navbar() {
   return (
     <nav className="navbar">
 
+      {/* LOGO */}
       <div className="logo" onClick={() => navigate("/")}>
         Nektar Ratish
       </div>
 
+      {/* LINKS */}
       <div className={`links ${open ? "active" : ""}`}>
 
+        {/* ALWAYS VISIBLE */}
         <a href="/">Home</a>
+        <a href="/products">Products</a>
 
         {/* BEFORE LOGIN */}
         {!isLoggedIn && (
@@ -53,6 +66,7 @@ function Navbar() {
 
       </div>
 
+      {/* MOBILE MENU */}
       <div className="hamburger" onClick={() => setOpen(!open)}>
         ☰
       </div>
