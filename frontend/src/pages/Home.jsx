@@ -1,82 +1,72 @@
 import "../styles/home.css";
 import logo from "../images/logo.jpg";
 import image1 from "../images/image1.jpg";
-import image2 from "../images/image2.jpg";
-import image3 from "../images/image3.jpg";
-import image4 from "../images/image4.jpg";
 
 function Home() {
   return (
     <div className="home">
 
-      {/* NAV HERO WRAPPER */}
+      {/* HERO */}
       <section className="hero">
 
-        {/* LEFT CONTENT */}
+        {/* LEFT */}
         <div className="hero-left">
 
-        <div className="hero-top-text">
-  <h2>Welcome to Nektar Ratish</h2>
-  <p>Premium traditional Muratina experience delivered fresh.</p>
-</div>
+          <div className="tag">
+            Premium Traditional Brew
+          </div>
+
           <h1>
-            Fast. Clean. <br />
-            Delivered instantly.
+            Muratina<br />
+            Reimagined for Today.
           </h1>
 
           <p>
-            Order food, groceries, and essentials from your favorite places —
-            delivered to your door in minutes. A modern delivery experience built for speed.
+            Experience authentic Kenyan traditional Muratina,
+            crafted with heritage, purity, and modern delivery convenience.
+            From culture to your doorstep.
           </p>
 
           <div className="cta">
-            <button className="btn primary">Get Started</button>
-            <button className="btn outline">Explore</button>
+            <button className="btn primary">Order Now</button>
+            <button className="btn outline">Explore Menu</button>
           </div>
 
-          <div className="stats">
+          <div className="mini-info">
             <div>
-              <h3>10k+</h3>
-              <p>Users</p>
+              <h4>100% Natural</h4>
+              <p>No additives</p>
             </div>
+
             <div>
-              <h3>500+</h3>
-              <p>Restaurants</p>
+              <h4>24h Delivery</h4>
+              <p>Fresh batches</p>
             </div>
+
             <div>
-              <h3>24/7</h3>
-              <p>Delivery</p>
+              <h4>Premium Taste</h4>
+              <p>Authentic recipe</p>
             </div>
           </div>
 
         </div>
 
-        {/* RIGHT IMAGE GRID */}
+        {/* RIGHT VISUAL */}
         <div className="hero-right">
-          <img src={image1} className="img img1" />
-          <img src={image2} className="img img2" />
-          <img src={image3} className="img img3" />
-          <img src={image4} className="img img4" />
-        </div>
 
-      </section>
+          <div className="glass-card card1">
+            <img src={image1} alt="" />
+            <span>Muratina Classic</span>
+          </div>
 
-      {/* FEATURES SECTION */}
-      <section className="features">
+          <div className="main-image">
+            <img src={logo} alt="hero" />
+          </div>
 
-        <div className="feature-card">
-          ⚡ <h3>Instant Delivery</h3>
-          <p>Get what you want in minutes, not hours.</p>
-        </div>
+          <div className="glass-card card2">
+            <p>🔥 Fresh Batch Today</p>
+          </div>
 
-        <div className="feature-card">
-          🍔 <h3>Top Restaurants</h3>
-          <p>Order from the best local food spots.</p>
-        </div>
-
-        <div className="feature-card">
-          📍 <h3>Live Tracking</h3>
-          <p>Know exactly where your order is.</p>
         </div>
 
       </section>
