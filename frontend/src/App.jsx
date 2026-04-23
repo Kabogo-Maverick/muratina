@@ -6,11 +6,13 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <BrowserRouter>
       <AppNavbar />
+      
 
       <Routes>
         <Route path="/" element={<Home />} />
@@ -19,6 +21,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/products" element={<Products />} />
       </Routes>
+
+      <Footer />
+      
     </BrowserRouter>
   );
 }
