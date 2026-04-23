@@ -15,11 +15,10 @@ function Home() {
         {/* LEFT CONTENT */}
         <div className="hero-left">
 
-          <div className="brand">
-            <img src={logo} alt="logo" />
-            <span>Nektar Ratish</span>
-          </div>
-
+        <div className="hero-top-text">
+  <h2>Welcome to Nektar Ratish</h2>
+  <p>Premium traditional Muratina experience delivered fresh.</p>
+</div>
           <h1>
             Fast. Clean. <br />
             Delivered instantly.
