@@ -1,7 +1,7 @@
 # necessary imports because main.py is the entry point of the application
 from fastapi import FastAPI
 from app.database import engine, Base
-
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.auth.routes import router as auth_router
 from app.users.routes import router as users_router
@@ -15,6 +15,19 @@ Base.metadata.create_all(bind=engine)
 
 #initialize the FastAPI app
 app = FastAPI(title="Ratish API")
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # Include auth routes
 app.include_router(auth_router)

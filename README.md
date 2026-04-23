@@ -11,7 +11,8 @@ python -m venv venv
 <!-- ACTIVATE VIRTUAL ENV -->
 venv\Scripts\activate
 
-
+        
+uvicorn app.main:app --reload
 
 <!-- INSTALL DEPENDENCIES -->
 pip install fastapi uvicorn sqlalchemy passlib[bcrypt] python-jose
