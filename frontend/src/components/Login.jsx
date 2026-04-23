@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
-import "../styles/Login.css";
+import "../styles/login.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,6 +21,7 @@ function Login() {
 
       // 🔥 REDIRECT TO HOME
       navigate("/");
+      window.location.reload();
     } else {
       alert(data.detail || "Login failed");
     }

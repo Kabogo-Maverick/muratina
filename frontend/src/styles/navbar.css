@@ -59,3 +59,19 @@
     display: flex;
   }
 }
+
+
+.logout-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
