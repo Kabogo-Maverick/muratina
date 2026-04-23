@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import "../styles/Login.css";
 
 function Login() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -15,10 +18,9 @@ function Login() {
 
     if (data.access_token) {
       localStorage.setItem("token", data.access_token);
-      alert("Login successful");
 
-      // redirect (optional)
-      window.location.href = "/dashboard";
+      // 🔥 REDIRECT TO HOME
+      navigate("/");
     } else {
       alert(data.detail || "Login failed");
     }

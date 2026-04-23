@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/auth";
 import "../styles/register.css";
 
 function Register() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -16,8 +19,8 @@ function Register() {
     if (data.user_id) {
       alert("Registered successfully");
 
-      // redirect to login
-      window.location.href = "/login";
+      // 🔥 GO TO LOGIN PAGE
+      navigate("/login");
     } else {
       alert(data.detail || "Registration failed");
     }
