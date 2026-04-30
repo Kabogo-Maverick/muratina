@@ -1,0 +1,142 @@
+.orders-page {
+  padding: 80px 100px;
+  font-family: "Inter", sans-serif;
+}
+
+.orders-page h1 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+/* LAYOUT */
+.orders-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 40px;
+}
+
+/* FORM */
+.order-form {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #eee;
+}
+
+.order-form label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.order-form select,
+.order-form input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+/* IMAGE */
+.preview {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.preview img {
+  width: 200px;
+  height: auto;
+}
+
+/* DELIVERY BUTTONS */
+.delivery-options {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.delivery-options button {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid black;
+  background: white;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.delivery-options .active {
+  background: black;
+  color: white;
+}
+
+/* ZONES */
+.zone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.zone {
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.zone.selected {
+  border: 2px solid black;
+}
+
+/* SUMMARY */
+.order-summary {
+  background: #111;
+  color: white;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.order-summary h2 {
+  margin-bottom: 20px;
+}
+
+.order-summary p {
+  margin: 8px 0;
+}
+
+.order-summary hr {
+  margin: 20px 0;
+}
+
+.order-summary h3 {
+  margin-top: 10px;
+}
+
+/* BUTTON */
+.confirm-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  border: none;
+  background: white;
+  color: black;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .orders-container {
+    grid-template-columns: 1fr;
+  }
+
+  .zone-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .orders-page {
+    padding: 40px 20px;
+  }
+}
