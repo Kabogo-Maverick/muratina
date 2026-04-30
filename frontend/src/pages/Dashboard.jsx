@@ -1,62 +1,128 @@
+import { useState } from "react";
 import "../styles/dashboard.css";
 
+const dummyOrders = [
+  { id: 1, product: "3 Litres", price: 450, status: "Pending", user: "John" },
+  { id: 2, product: "10 Litres", price: 1500, status: "Dispatched", user: "Mary" },
+  { id: 3, product: "5 Litres", price: 750, status: "Packed", user: "Alex" }
+];
+
 function Dashboard() {
+  const [orders, setOrders] = useState(dummyOrders);
+
+  const isAdmin = true; // 🔥 change later from backend
+
+  const updateStatus = (id, newStatus) => {
+    setOrders((prev) =>
+      prev.map((o) => (o.id === id ? { ...o, status: newStatus } : o))
+    );
+  };
+
   return (
     <div className="dashboard">
 
       {/* SIDEBAR */}
       <aside className="sidebar">
-        <div className="logo">Nektar</div>
+        <div className="sidebar-top">
+          <h2 className="logo">Nektar</h2>
 
-        <nav>
-          <a href="#">Overview</a>
-          <a href="#">Orders</a>
-          <a href="#">Restaurants</a>
-          <a href="#">Profile</a>
-        </nav>
+          <nav>
+            <a className="active">Overview</a>
+            <a>Orders</a>
+            <a>Profile</a>
+          </nav>
+        </div>
 
         <button className="logout">Logout</button>
       </aside>
 
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <main className="main">
 
-        <header className="topbar">
-          <h1>Dashboard</h1>
-          <p>Welcome back 👋</p>
-        </header>
+        {/* HEADER */}
+        <div className="topbar">
+          <div>
+            <h1>{isAdmin ? "Admin Dashboard" : "My Dashboard"}</h1>
+            <p>
+              {isAdmin
+                ? "Manage and track all customer orders"
+                : "Track your orders in real time"}
+            </p>
+          </div>
+        </div>
 
         {/* STATS */}
-        <section className="stats">
-
+        <div className="stats">
           <div className="card">
-            <h3>120</h3>
-            <p>Orders</p>
+            <h3>{orders.length}</h3>
+            <p>Total Orders</p>
           </div>
 
           <div className="card">
-            <h3>35</h3>
-            <p>Restaurants</p>
+            <h3>{orders.filter(o => o.status === "Delivered").length}</h3>
+            <p>Delivered</p>
           </div>
 
           <div className="card">
-            <h3>98%</h3>
-            <p>Success Rate</p>
+            <h3>{orders.filter(o => o.status !== "Delivered").length}</h3>
+            <p>Active Orders</p>
+          </div>
+        </div>
+
+        {/* ORDERS */}
+        <div className="orders-section">
+          <div className="orders-header">
+            <h2>Orders</h2>
           </div>
 
-        </section>
+          <table className="orders-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product</th>
+                {isAdmin && <th>User</th>}
+                <th>Price</th>
+                <th>Status</th>
+                {isAdmin && <th>Update</th>}
+              </tr>
+            </thead>
 
-        {/* ACTIVITY */}
-        <section className="activity">
-          <h2>Recent Activity</h2>
+            <tbody>
+              {orders.map((order) => (
+                <tr key={order.id}>
+                  <td>#{order.id}</td>
+                  <td>{order.product}</td>
+                  {isAdmin && <td>{order.user}</td>}
+                  <td>Ksh {order.price}</td>
 
-          <div className="item">✔ Order #102 delivered</div>
-          <div className="item">✔ New restaurant added</div>
-          <div className="item">✔ Payment received</div>
-        </section>
+                  <td>
+                    <span className={`status ${order.status.toLowerCase()}`}>
+                      {order.status}
+                    </span>
+                  </td>
+
+                  {isAdmin && (
+                    <td>
+                      <select
+                        value={order.status}
+                        onChange={(e) =>
+                          updateStatus(order.id, e.target.value)
+                        }
+                      >
+                        <option>Pending</option>
+                        <option>Packed</option>
+                        <option>Dispatched</option>
+                        <option>Delivered</option>
+                      </select>
+                    </td>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
       </main>
-
     </div>
   );
 }

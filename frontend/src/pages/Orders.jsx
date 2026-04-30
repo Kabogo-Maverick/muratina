@@ -22,12 +22,14 @@ const products = [
 
 /* DELIVERY ZONES (FROM KAHAWA SUKARI) */
 const zones = [
-  { name: "Kahawa Sukari", fee: 0 },
+  { name: "Kahawa Sukari", fee: 200 },
   { name: "Ruiru", fee: 100 },
-  { name: "Kahawa West", fee: 150 },
+  { name: "Kahawa West", fee: 300 },
   { name: "Thika Road", fee: 200 },
   { name: "Juja", fee: 250 },
-  { name: "Nairobi CBD", fee: 300 }
+  { name: "Nairobi CBD", fee: 300 },
+  { name: "Kasarani", fee: 300 },
+  { name: "Kiambu Town", fee: 200 },
 ];
 
 function Orders() {
